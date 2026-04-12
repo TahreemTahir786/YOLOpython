@@ -20,6 +20,8 @@ RUN pip install Flask
 
 RUN pip install kubernetes
 
+RUN pip install psutil
+
 RUN mkdir yolov8
 
 WORKDIR /root/yolov8
@@ -27,9 +29,7 @@ WORKDIR /root/yolov8
 COPY *.pt .
 
 # Copy Flask application files
-# COPY app8_kube_stats.py /root/app.py
 COPY app.py /root/app.py
-
 
 # Expose port
 EXPOSE 5001
