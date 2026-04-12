@@ -20,6 +20,8 @@ RUN pip install Flask
 
 RUN pip install kubernetes
 
+RUN pip install psutil
+
 RUN mkdir yolov8
 
 WORKDIR /root/yolov8

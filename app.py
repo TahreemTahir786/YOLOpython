@@ -6,15 +6,17 @@ import os
 from PIL import Image
 import io
 import json
+import psutil
+import os
 
 app = Flask(__name__)
 
-model = YOLO("/root/yolov8/yolov8n.pt")
+model = YOLO("yolov8n.pt")
 
 @app.route('/detect', methods=['POST'])
 def detect():
     client_server = float(request.headers.get('clientside')) if 'clientside' in request.headers else 'Sender time not found'
-    start_time = time.time().  
+    start_time = time.time()
     # calculating client to server propagation time
     client_side_prop = start_time - client_server 
     print(f'Client prop: {client_side_prop}')
@@ -48,12 +50,23 @@ def detect():
         
         processing_time = end_time - start_time
         print(f"inference time: {processing_time}")
+
+        process = psutil.Process(os.getpid())
+        cpu_usage = process.cpu_percent(interval=0.1)
+        memory_info = process.memory_info()
+        memory_usage = memory_info.rss / (1024 * 1024)  # in MB
+        cpu_count = os.cpu_count()
+        memory_total = psutil.virtual_memory().total / (1024 * 1024)  # in MB
         # embedding current time for client to extract
         response = {
             'image': nplist,
             'proc_time': processing_time,
             'clientsideprop': client_side_prop,
-            'serverclientprop': end_time
+            'serverclientprop': end_time,
+            'cpu_request': cpu_count,
+            'cpu_usage': cpu_usage,
+            'memory_request': memory_total,
+            'memory_usage': memory_usage
         }
         print(response)
 

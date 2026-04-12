@@ -40,7 +40,7 @@ def process_query(dir_path: str, item: str):
     if response.status_code == 200:
         current_time = time.time()
         json_response = json.loads(response.text)
-        img_list = json_response['detection_results']
+        img_list = json_response['image']
         img_np = np.array(img_list, dtype=np.uint8)
         image = Image.fromarray(img_np)
   
@@ -77,7 +77,7 @@ def process_query(dir_path: str, item: str):
 
 def query(dir_path: str, save_path: str, csv_path: str):
     item = '6.jpg'
-    for i in range(1000):
+    for i in range(10):
         print(f'Iteration: {i}')
         result = process_query(dir_path, item)
         if result:
