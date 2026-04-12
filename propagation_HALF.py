@@ -35,7 +35,7 @@ def process_query(dir_path: str, item: str):
     headers = {'clientside': str(s_time)}
     with open(img, 'rb') as f:
         files = {'img': f}
-        response = requests.post('http://localhost:5000/detect', files=files, headers=headers, timeout=(10,30))
+        response = requests.post('http://localhost:5001/detect', files=files, headers=headers, timeout=(10,30))
         
     if response.status_code == 200:
         current_time = time.time()
