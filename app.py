@@ -26,14 +26,6 @@ def detect():
 
     image = request.files['img']
     try:
-        # start_time = time.time()
-        # im_pil = Image.open(image)
-        # print("Opened the image")
-        # results = model(im_pil)
-        # print(f"printing results: {results}")
-        # nparr = results.render()[0]
-        # nplist = nparr.tolist()
-        # end_time = time.time()
 
         start_time = time.time()
 
@@ -79,4 +71,4 @@ def detect():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(host='0.0.0.0', port=5001)
