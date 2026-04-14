@@ -53,16 +53,16 @@ pip install -r requirements.txt
 pip install flask ultralytics psutil pandas numpy matplotlib notebook
 ```
 
-### 4. Download YOLOv8 Weights
-Place your YOLOv8 model weights (e.g., `yolov8n.pt`, `yolov8s.pt`, `yolov8m.pt`) in the project root.
+### 4. YOLOv8 Weights
+YOLOv8 model weights (e.g., `yolov8n.pt`, `yolov8s.pt`, `yolov8m.pt`) are placed in the project root.
 
 ---
 
-## Running the Flask API
+## Flask API
 ```bash
 python app.py
 ```
-- The API will be available at `http://localhost:5000/detect`.
+- The API will be available at `http://localhost:5000/detect`. I used the port 5000 but this can be updated see Troubleshooting section at the bottom.
 
 ---
 
@@ -75,7 +75,7 @@ python propagation_HALF.py
 ---
 
 ## Running Jupyter Notebooks
-1. Activate your virtual environment.
+1. Activate virtual environment.
 2. Start Jupyter:
    ```bash
    jupyter notebook
@@ -118,4 +118,4 @@ docker run -p 5000:5000 yolov8-api
 
 ---
 
-Based on public sources, with modifications
+Based on public sources, with added modifications. 
